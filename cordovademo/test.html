@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html" charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimun-scale=1, user-scalable=no">
+    <script type="text/javascript">
+        var exec = require('cordova/exec');
+        var btnSetTitle = document.querySelector(".set_title");
+        var titleText = document.querySelector(".title_text");
+        btnSetTitle.addEventListener("click",function () {
+            var title = titleText.value;
+            exec(null, null, 'WebPlugin', 'showToast', [{
+                msg:title
+            }]);
+        });
+    </script>
+</head>
+<body>
+<input class="title_text" type="text" title="" placeholder="标题文字"/>
+<button class="set_title">设置标题</button>
+
+</body>
+</html>
