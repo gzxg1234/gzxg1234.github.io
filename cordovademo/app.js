@@ -17,6 +17,29 @@ var plugins = {
 
     close: function () {
         cordova.exec(null, null, "WebPlugin", "close", []);
+    },
+
+    pickContact: function (success, failed) {
+        navigator.contacts.pickContact(success, failed);
+    },
+
+    takePicture:function (type) {
+        var options = {
+            // Some common settings are 20, 50, and 100
+            quality: 50,
+            destinationType: Camera.DestinationType.FILE_URI,
+            // In this app, dynamically set the picture source, Camera or photo gallery
+            sourceType: type,
+            encodingType: Camera.EncodingType.JPEG,
+            mediaType: Camera.MediaType.PICTURE,
+            allowEdit: true,
+            correctOrientation: true  //Corrects Android orientation quirks
+        };
+        navigator.camera.getPicture(function cameraSuccess(imageUri) {
+            $('.img').attr('src',imageUri);
+        }, function cameraError(error) {
+            console.debug("Unable to obtain picture: " + error, "app");
+        }, options);
     }
 };
 
@@ -38,6 +61,14 @@ var app = {
                 rightButton: {
                     visible: true,
                     text: $('.input_right_text').val()
+                }
+            })
+        });
+        $('.set_right_icon').click(function () {
+            plugins.setTitleBar({
+                rightButton: {
+                    visible: true,
+                    icon: $('.input_right_icon').val()
                 }
             })
         });
@@ -108,6 +139,25 @@ var app = {
                 toPage: $('.input_url').val()
             })
         });
+        $('.set_bg_color').click(function () {
+            plugins.setTitleBar({
+                bgColor: parseInt($('.bg_color').val(), 16)
+            })
+        });
+        $('.select_contact').click(function () {
+            plugins.pickContact(function (contact) {
+                $('.contact_info').text(JSON.stringify(contact));
+            },function (err) {
+                alert(err);
+            })
+        });
+
+        $('.take_picture_camera').click(function () {
+            plugins.takePicture(Camera.PictureSourceType.CAMERA);
+        });
+        $('.take_picture_lib').click(function () {
+            plugins.takePicture(Camera.PictureSourceType.SAVEDPHOTOALBUM);
+        })
 
     }
 };

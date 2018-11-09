@@ -21,7 +21,12 @@
     </style>
 </head>
 <body>
-<div>
+<button class="hide_title_bar marginTop20">隐藏标题栏</button>
+<div class="marginTop20">
+    <input class="bg_color" type="text" title="" placeholder="背景颜色（16进制）" value="FFFFFFFF"/>
+    <button class="set_bg_color">设置背景颜色</button>
+</div>
+<div class="marginTop20">
     <input class="title_text" type="text" title="" placeholder="标题文字"/>
     <button class="set_title">设置标题</button>
 </div>
@@ -29,14 +34,16 @@
     <input class="title_text_color" type="text" title="" placeholder="标题颜色（16进制）" value="FFFFFFFF"/>
     <button class="set_title_color">设置标题颜色</button>
 </div>
-<button class="hide_title_bar marginTop20">隐藏标题</button>
-<br/>
 
 <div class="marginTop20">
     <input class="input_right_text" type="text" title="" placeholder="右边按钮文字" value="rightButton"/>
     <button class="set_right_text">设置右边按钮文字</button>
 </div>
-<br/>
+<div class="marginTop20">
+    <input class="input_right_icon" type="text" title="" placeholder="右边按钮图标地址"
+           value="https://bdn.135editor.com/files/users/539/5394568/201810/sdV9EmnH_VmaG.png"/>
+    <button class="set_right_icon">设置右边按钮图标</button>
+</div>
 <div class="marginTop20">
     <input class="input_right_text_color" type="text" title="" placeholder="标题颜色（16进制）" value="FFFFFFFF"/>
     <button class="set_right_text_color">设置右边按钮颜色</button>
@@ -47,10 +54,23 @@
 <button class="set_right_alert marginTop20">设置右边按钮响应事件为弹出提示</button>
 
 <div class="marginTop20">
-    <input class="input_url" type="text" title="" placeholder="url" value="file:///android_asset/cordovademo/test.html"/>
+    <input class="input_url" type="text" title="" placeholder="url"
+           value="file:///android_asset/cordovademo/test.html"/>
     <button class="open_new_web">打开新web窗口</button>
     <button class="open_native">打开native窗口</button>
 </div>
+
+<div class="marginTop20">
+    <button class="select_contact">选择联系人</button>
+    <span class="contact_info"></span>
+</div>
+
+<div class="marginTop20">
+    <button class="take_picture_camera">拍照</button>
+    <button class="take_picture_lib">从图库选择</button>
+    <img style="width: 50%;display: block" class="img" src=""/>
+</div>
+
 
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="platform_www/cordova.js"></script>
