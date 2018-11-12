@@ -1,4 +1,4 @@
-var exec = require('cordova/exec');
+var exec = cordova.require('cordova/exec');
 var plugins = {
     showToast: function (msg) {
         exec(null, null, 'WebPlugin', 'showToast', [{
