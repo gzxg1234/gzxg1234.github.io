@@ -1,23 +1,17 @@
 var exec = cordova.require('cordova/exec');
 var plugins = {
-    showToast: function (msg) {
-        exec(null, null, 'CedarPlugin', 'showToast', [{
-            msg: msg
-        }]);
-    },
-
     setTitleBar: function (config) {
-        exec(null, null, "CedarPlugin", "setTitleBar", [config]);
+        exec(null, null, "CedarPlugin", "setNavigationBar", [config]);
     },
 
     open: function (arg) {
         exec(null, function (result) {
             alert("错误:" + result);
-        }, "WebPlugin", "open", [arg]);
+        }, "CedarPlugin", "jumpPage", [arg]);
     },
 
     close: function () {
-        exec(null, null, "CedarPlugin", "close", []);
+        exec(null, null, "CedarPlugin", "goBackPage", []);
     },
 
     pickContact: function (success, failed) {
@@ -59,32 +53,32 @@ var app = {
 
         $('.set_right_text').click(function () {
             plugins.setTitleBar({
-                rightButton: {
+                rightBtn: {
                     visible: true,
-                    text: $('.input_right_text').val()
+                    title: $('.input_right_text').val()
                 }
             })
         });
         $('.set_right_icon').click(function () {
             plugins.setTitleBar({
-                rightButton: {
+                rightBtn: {
                     visible: true,
-                    icon: $('.input_right_icon').val()
+                    img: $('.input_right_icon').val()
                 }
             })
         });
 
         $('.set_right_text_color').click(function () {
             plugins.setTitleBar({
-                rightButton: {
-                    textColor: parseInt($('.input_right_text_color').val(), 16)
+                rightBtn: {
+                    titleColor: parseInt($('.input_right_text_color').val(), 16)
                 }
             })
         });
 
         $('.set_right_back').click(function () {
             plugins.setTitleBar({
-                rightButton: {
+                rightBtn: {
                     visible: true,
                     action: addWindowFunc(function () {
                         plugins.close();
@@ -94,7 +88,7 @@ var app = {
         });
         $('.set_right_alert').click(function () {
             plugins.setTitleBar({
-                rightButton: {
+                rightBtn: {
                     action: addWindowFunc(function () {
                         alert("hello,world")
                     })
@@ -131,13 +125,13 @@ var app = {
         $('.open_new_web').click(function () {
             plugins.open({
                 type: 'h5',
-                toPage: $('.input_url').val()
+                url: $('.input_url').val()
             })
         });
         $('.open_native').click(function () {
             plugins.open({
                 type: 'native',
-                toPage: $('.input_url').val()
+                url: $('.input_url').val()
             })
         });
         $('.set_bg_color').click(function () {

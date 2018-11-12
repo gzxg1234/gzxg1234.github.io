@@ -115,7 +115,6 @@ module.exports.metadata =
 {
   "cordova-plugin-camera": "4.0.3",
   "cordova-plugin-whitelist": "1.3.3",
-  "com.cedarhd.WebPlugin": "1.0.0",
   "cordova-plugin-contacts": "3.0.1"
 };
 // BOTTOM OF METADATA
