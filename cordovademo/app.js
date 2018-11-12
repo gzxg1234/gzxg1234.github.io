@@ -1,29 +1,30 @@
+var exec = require('cordova/exec');
 var plugins = {
     showToast: function (msg) {
-        cordova.exec(null, null, 'WebPlugin', 'showToast', [{
+        exec(null, null, 'WebPlugin', 'showToast', [{
             msg: msg
         }]);
     },
 
     setTitleBar: function (config) {
-        cordova.exec(null, null, "WebPlugin", "setTitleBar", [config]);
+        exec(null, null, "WebPlugin", "setTitleBar", [config]);
     },
 
     open: function (arg) {
-        cordova.exec(null, function (result) {
+        exec(null, function (result) {
             alert("错误:" + result);
         }, "WebPlugin", "open", [arg]);
     },
 
     close: function () {
-        cordova.exec(null, null, "WebPlugin", "close", []);
+        exec(null, null, "WebPlugin", "close", []);
     },
 
     pickContact: function (success, failed) {
         navigator.contacts.pickContact(success, failed);
     },
 
-    takePicture:function (type) {
+    takePicture: function (type) {
         var options = {
             // Some common settings are 20, 50, and 100
             quality: 50,
@@ -36,7 +37,7 @@ var plugins = {
             correctOrientation: true  //Corrects Android orientation quirks
         };
         navigator.camera.getPicture(function cameraSuccess(imageUri) {
-            $('.img').attr('src',imageUri);
+            $('.img').attr('src', imageUri);
         }, function cameraError(error) {
             console.debug("Unable to obtain picture: " + error, "app");
         }, options);
@@ -147,7 +148,7 @@ var app = {
         $('.select_contact').click(function () {
             plugins.pickContact(function (contact) {
                 $('.contact_info').text(JSON.stringify(contact));
-            },function (err) {
+            }, function (err) {
                 alert(err);
             })
         });
