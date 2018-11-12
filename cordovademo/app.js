@@ -55,7 +55,7 @@ var app = {
             plugins.setTitleBar({
                 rightBtn: {
                     visible: true,
-                    title: $('.input_right_text').val()
+                    btnTitle: $('.input_right_text').val()
                 }
             })
         });
@@ -71,7 +71,7 @@ var app = {
         $('.set_right_text_color').click(function () {
             plugins.setTitleBar({
                 rightBtn: {
-                    titleColor: parseInt($('.input_right_text_color').val(), 16)
+                    btnTitleColor: parseInt($('.input_right_text_color').val(), 16)
                 }
             })
         });
