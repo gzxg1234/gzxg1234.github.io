@@ -1,13 +1,13 @@
 var exec = cordova.require('cordova/exec');
 var plugins = {
     showToast: function (msg) {
-        exec(null, null, 'WebPlugin', 'showToast', [{
+        exec(null, null, 'CedarPlugin', 'showToast', [{
             msg: msg
         }]);
     },
 
     setTitleBar: function (config) {
-        exec(null, null, "WebPlugin", "setTitleBar", [config]);
+        exec(null, null, "CedarPlugin", "setTitleBar", [config]);
     },
 
     open: function (arg) {
@@ -17,7 +17,7 @@ var plugins = {
     },
 
     close: function () {
-        exec(null, null, "WebPlugin", "close", []);
+        exec(null, null, "CedarPlugin", "close", []);
     },
 
     pickContact: function (success, failed) {
