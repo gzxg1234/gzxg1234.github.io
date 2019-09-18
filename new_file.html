@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+      function scanQrCode(callback) {
+        if (typeof(window.callbackCount) == "undefined") {
+          window.callbackCount = 0;
+        } else {
+          window.callbackCount += 1;
+        }
+        var funcName = '_nativeCallback' + window.callbackCount;
+        window[funcName] = function(code) {
+          delete window[funcName];
+          callback(code);
+        }
+        jiao.qrCodeScan('window.' + funcName);
+      }
+
+      function ss() {
+        scanQrCode(function(code) {
+          alert(code);
+        });
+      }
+
+      // var div = document.getElementById('text');
+      // text.addEventListener('paste', function(event) {
+      //   console.log(event)
+      //   if (event.clipboardData || event.originalEvent) {
+      //   console.log(event.clipboardData.event)
+      //   }
+      // });
+    </script>
+  </head>
+  <body>
+    <button onclick="ss()">扫描二维码</button>
+  </body>
+</html>
